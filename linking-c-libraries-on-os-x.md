@@ -1,10 +1,12 @@
-# Linking libraries from Homebrew (on OS X)
+# Linking C libraries on OS X
 
-Here's a quick writeup on how to get Haskell libraries that link to system libraries working on OS X. I'll be using the `text-icu` library from Hackage as an example.
+Here's a quick writeup on how to get Haskell libraries that link to C libraries working on OS X. I'll be using the `text-icu` library from Hackage as an example.
 
 I'll clean up this post over the weekend for better clarity.
 
 ## Problem
+
+Let's try to install the `text-icu` library in a sandbox.
 
 ```
 $ mkdir icu-test
@@ -88,6 +90,8 @@ From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/icu4c.rb
 The directory we'll need is `/opt/boxen/homebrew/Cellar/icu4c/54.1`.
 
 ### Updating `~/.cabal/config`
+
+If you don't have a `~/.cabal/config` file, run `cabal update` first.
 
 Cabal needs to know where those libraries are located before it can link them correctly. Update your `~/.cabal/config` file to add the `icu4c/54.1/include` and `icu4c/54.1/lib` directories.
 
